@@ -141,22 +141,22 @@
             $A=$_GET['parabool1'];
             $B=$_GET['parabool2'];
             $C=$_GET['parabool3'];
-        }
-
-        $D=($B*$B) - (4*$A*$C);
-        $x1=(($B*-1) + (sqrt($D))) / (2*$A);
-        $x2=(($B*-1) + (-1*sqrt($D))) / (2*$A);
-
-        if(isset($x1)) {
+        
+            $D=($B*$B) - (4*$A*$C);
+            $x1=(($B*-1) + (sqrt($D))) / (2*$A);
+            $x2=(($B*-1) + (-1*sqrt($D))) / (2*$A);
+                
             echo "x1 = ".$x1."<br>";
             echo "x2 = ".$x2."<br>";
         }
-      
-
-
-
         ?>
         
+        <h3>Gemiddelde berekenen van reeks</h3>
+        <form method="get">
+            <input type="number" name="getalgem">
+            <br><br>
+            <input type="submit" value="uitrekenen">
+        </form>
 
 
 
