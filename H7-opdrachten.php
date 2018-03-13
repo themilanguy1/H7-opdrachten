@@ -172,9 +172,14 @@
         $sesarray=array();
         $_SESSION['sessiearray'] = $sesarray;
         }
-
-    
     ?>
+    <br><br>
+
+
+    <!-- opdracht 7 -->
+    <h3>Loterij calculator</h3>
+
+
 
 
         <div style="height: 200px;">
