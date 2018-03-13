@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>opdracht 1</title>
+<title>H7 opdrachten</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="formulierstylesheet.css">
 <style>
@@ -19,6 +19,7 @@
     </style>
 </head>
 <body>
+    <!-- opdracht 1 -->
     <h3>BTW calculator</h3>
     <form method="GET">
         Bedrag exclusief BTW
@@ -27,7 +28,7 @@
         <input type="radio" name="BTW" value="1.06">Laag, 6%
         <br>
         <input type="radio" name="BTW" value="1.21">Hoog, 21%
-        <br>
+        <br><br>
         <input type="submit" value="uitrekenen">
 
     </form>
@@ -44,10 +45,8 @@
         echo "Bedrag inclusief &euro;". $BTWvar." BTW bij ". $btwnummer."% BTW: &euro; ". $totaal ."<br>";
 
     } 
-       
-
-
     ?>
+    <!-- opdracht 2 -->
     <h3>Simpele calculator</h3>
     <form method="get">
     Value 1 <input type="number" name="val1" required>
@@ -92,14 +91,14 @@
     ?>
 
     </form>
-
+    <!-- opdracht 3 -->
     <div class="<?php 
             if(isset($_GET['color'])) {
                 echo $_GET['color'];
             }
         ?> 
     ">
-            <h1>background setter</h1>
+            <h3>background setter</h3>
             <form method="get">
                 <input type="radio" name="color" value="red" checked> Rood <br>
                 <input type="radio" name="color" value="green"> Groen <br>
@@ -107,59 +106,79 @@
                 <input type="submit" value="Kleur instellen">
             </form>
     </div>
-
-        <h1>Korting calculator</h1>
-        <form method="get">
-            Prijs <input type="text" name="prijs"> <br>
-            Korting (%) <input type="text" name="korting"> <br> <br>
-            <input type="submit" value="Uitrekenen">
-        </form>
-        <br>
-        <?php
-            if(isset($_GET['prijs']) && isset($_GET['korting'])) {
-                echo 'Bedrag inclusief ' . $_GET['korting'] . '% korting: &euro; ' . $_GET['prijs'] * ((100 - $_GET['korting'])/100);
-            } else {
-                echo "Niet alle waarden zijn ingevult!";
-            }
-        ?>
+    <!-- opdracht 4 -->
+    <h3>Korting calculator</h3>
+    <form method="get">
+        Prijs <input type="text" name="prijs" required> <br>
+        Korting (%) <input type="text" name="korting" required> <br> <br>
+        <input type="submit" value="Uitrekenen">
+    </form>
+    
+    <?php
+        if(isset($_GET['prijs']) && isset($_GET['korting'])) {
+            echo 'Bedrag inclusief ' . $_GET['korting'] . '% korting: &euro; ' . $_GET['prijs'] * ((100 - $_GET['korting'])/100);
+        } 
+    ?>
+    
+    <!-- opdracht 5 -->
+    <h3>Parabool ABC formule</h3>
+    <form method="get">
+        <input type="number" name="parabool1" required>
+        x^2 +
+        <input type="number" name="parabool2" required>
+        x + 
+        <input type="number" name="parabool3" required>
+        = 0
         <br><br>
+        <input type="submit">
+    </form>
 
-        <h3>Parabool ABC formule</h3>
-        <form method="get">
-            <input type="number" name="parabool1" required>
-            x^2 +
-            <input type="number" name="parabool2" required>
-            x + 
-            <input type="number" name="parabool3" required>
-            = 0
-            <br><br>
-            <input type="submit">
-        </form>
+    <?php
+    if(isset($_GET['parabool1'])) {
+        $A=$_GET['parabool1'];
+        $B=$_GET['parabool2'];
+        $C=$_GET['parabool3'];
+    
+        $D=($B*$B) - (4*$A*$C);
+        $x1=(($B*-1) + (sqrt($D))) / (2*$A);
+        $x2=(($B*-1) + (-1*sqrt($D))) / (2*$A);
+            
+        echo "x1 = ".$x1."<br>";
+        echo "x2 = ".$x2."<br>";
+    }
+    ?>
+    <!-- opdracht 6 -->
+    <h3>Gemiddelde berekenen van reeks</h3>
+    <form method="get">
+        <input type="number" name="getalgem" min="1.0" max="10.0" step="any" required>
+        <br><br>
+        <input type="submit" value="uitrekenen">
+    </form>
 
-        <?php
-        if(isset($_GET['parabool1'])) {
-            $A=$_GET['parabool1'];
-            $B=$_GET['parabool2'];
-            $C=$_GET['parabool3'];
-        
-            $D=($B*$B) - (4*$A*$C);
-            $x1=(($B*-1) + (sqrt($D))) / (2*$A);
-            $x2=(($B*-1) + (-1*sqrt($D))) / (2*$A);
-                
-            echo "x1 = ".$x1."<br>";
-            echo "x2 = ".$x2."<br>";
+    <?php
+    session_start();
+    
+    if(isset($_GET['getalgem'])) {
+        $getalgem = $_GET['getalgem'];
+        array_push($_SESSION['sessiearray'], $getalgem);
+        $arraycount = count($_SESSION['sessiearray']);
+            echo "er zitten $arraycount nummers in het array <br>";
+        $avgarray = array_sum($_SESSION['sessiearray']) / $arraycount;
+            echo "het gemiddelde cijfer van de reeks is ".number_format($avgarray, 1);
+        foreach($_SESSION['sessiearray'] as $items) {
+            
+        } 
+    } else {
+        $sesarray=array();
+        $_SESSION['sessiearray'] = $sesarray;
         }
-        ?>
-        
-        <h3>Gemiddelde berekenen van reeks</h3>
-        <form method="get">
-            <input type="number" name="getalgem">
-            <br><br>
-            <input type="submit" value="uitrekenen">
-        </form>
+
+    
+    ?>
 
 
-
+        <div style="height: 200px;">
+        </div>
 </body>
 </html>
 
