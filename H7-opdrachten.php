@@ -217,11 +217,66 @@
     <br><br>
 
     <!-- opdracht 8 -->
-    <h3></h3
+    <h3 id="naamopdrachtspinazie">Fruit shuffler</h3>
+    <form method="get" action="#naamopdrachtspinazie">
+        Fruitsoort <input type="text" name="fruitplus" required>
+        <br><br>
+        <input type="submit" value="toevoegen">
+        <hr>
+        <!-- VERANDEREN VOOR ONLINE ZETTEN -->
+        
+    </form>
+
+    <a href="?arrayEdit=sort#naamopdrachtspinazie">
+    <button name="arrayEdit" value="sort">Sorteer</button>
+    </a>    
+    <a href="?arrayEdit=shuffle#naamopdrachtspinazie">
+    <button name="arrayEdit" value="shuffle">Schudden</button>
+    </a>
+
+    <br><br>
+    <hr> 
 
 
-        <div style="height: 200px;">
-        </div>
+
+    <?php
+    $fruitarray=array();
+    if(!isset($_SESSION['fruitarray'])) {
+        $_SESSION['fruitarray'] = $fruitarray;
+    }
+
+    if(isset($_GET['fruitplus'])) {
+        $fruitplus = $_GET['fruitplus'];
+        array_push($_SESSION['fruitarray'], $fruitplus);
+    }
+        
+    $fruitarray = $_SESSION['fruitarray'];
+
+    if(isset($_GET['arrayEdit'])) {
+        switch($_GET['arrayEdit']) {
+            case "shuffle": 
+                shuffle($fruitarray);
+                break;
+            case "sort":
+                sort($fruitarray);
+                break;
+        }
+    }    
+
+    foreach($fruitarray as $item) {
+        echo "- ".$item."<br>";
+    }
+    ?>
+    <br><br>
+    <h3 id="hoer">Stringfuncties</h3>
+    <form method="get" action="#hoer">
+        
+    </form>
+    
+
+    <div style="height: 200px;">
+    </div>
+
 </body>
 </html>
 
