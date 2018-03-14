@@ -129,6 +129,7 @@
     
     <!-- opdracht 5 -->
     <h3>Parabool ABC formule</h3>
+    <p>Let op, als je geen geldige waarden heb ingevuld krijg je "NAN" als antwoord.</p>
     <form method="get">
         <input type="number" name="parabool1" required>
         x^2 +
@@ -270,8 +271,38 @@
     <br><br>
     <h3 id="hoer">Stringfuncties</h3>
     <form method="get" action="#hoer">
-        
+        Tekst: <input type="text" name="tekst"required>
+        <br>
+        <input type="radio" name="tekstkeuze" checked value="allcaps" > In hoofdletters
+        <br>
+        <input type="radio" name="tekstkeuze" value="beta"> In kleine letters
+        <br>
+        <input type="radio" name="tekstkeuze" value="abn"> Eerste letter van de zin hoofdletter
+        <br>
+        <input type="radio" name="tekstkeuze" value="jaden"> Eerste letter van ieder woord hoofdletter
+        <br><br>
+        <input type="submit" value="weergeven">
     </form>
+
+    <?php
+    if(isset($_GET['tekstkeuze'])) {
+        $tekst=$_GET['tekst'];
+        switch($_GET['tekstkeuze']) {
+            case "allcaps":
+                echo "output: ".strtoupper($tekst);
+                break;
+            case "beta":
+                echo "output: ".strtolower($tekst);
+                break;
+            case "abn":
+                echo "output: ".ucfirst($tekst);
+                break;
+            case "jaden":
+                echo "output: ".ucwords($tekst);
+                break;
+        }
+    }
+    ?>
     
 
     <div style="height: 200px;">
