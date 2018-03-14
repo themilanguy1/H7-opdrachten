@@ -19,6 +19,13 @@
     </style>
 </head>
 <body>
+    <!-- downloadknop -->
+    <a href="https://www.ictacademie.info/milangupta/downloads/H7-opdrachten.zip">
+    <button class="btn btn-primary">Download knop PHP</button>
+    </a>
+
+
+
     <!-- opdracht 1 -->
     <h3>BTW calculator</h3>
     <form method="GET">
@@ -178,8 +185,39 @@
 
     <!-- opdracht 7 -->
     <h3>Loterij calculator</h3>
+    <form method="get">
+        Startkapitaal <input type="number" name="startkap" min="1" required>
+        <br>
+        Rentepercentage <input type="number" name="rentepercentage" min="1" max="100" required>
+        <br>
+        Jaarlijkse opname <input type="number" name="jaaropname" min="1" required>
+        <br><br>
+        <input type="submit" value="Bereken de looptijd">
+    </form>
 
+    <?php
+    if(isset($_GET['startkap'])) {
+        $start=$_GET['startkap'];
+        $renteper=$_GET['rentepercentage'];
+        $jaaropname=$_GET['jaaropname'];
+        $geld = $start;
+        $count= 0;
+        while($geld>$jaaropname && $count<100)  {
+            $geld = $geld - $jaaropname;
+            $geld = $geld * (1+($renteper/100));
+            $count++;
+        } 
+        echo $count." jaar af te nemen."."<br>";
+        echo "geld over: ".number_format($geld, 2, ',', '.');
+        if($count>99) {
+            echo "<br>Dit bedrag is je hele leven af te nemen.";
+        }
+    }
+    ?>
+    <br><br>
 
+    <!-- opdracht 8 -->
+    <h3></h3
 
 
         <div style="height: 200px;">
